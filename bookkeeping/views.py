@@ -18,13 +18,13 @@ def add(request):
     bill_type.pid = pid
     bill_type.save()
 
-    data_dict = model_to_dict(bill_type)
+    data_dict = utils.change_to_list_dict(bill_type)
     return utils.success(data_dict)
 
 
 def get_list(self):
     list_val = BillType.objects.all()
-    return_list = utils.queryset_to_list_dict(list_val)
+    return_list = utils.change_to_list_dict(list_val)
 
     return utils.success(return_list)
 

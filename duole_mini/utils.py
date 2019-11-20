@@ -3,6 +3,8 @@
 from django.http import HttpResponse
 from django.forms.models import model_to_dict
 from django.core import serializers
+from django.db import models
+from django.db.models.query import QuerySet
 import json
 
 
@@ -64,3 +66,20 @@ def queryset_to_list_dict(data):
     for i in data:
         return_list.append(model_to_dict(i))
     return return_list
+
+
+# 查询结果 转 字典列表
+def change_to_list_dict(data):
+    if isinstance(data, models.Model):
+        return model_to_dict(data)
+
+    if isinstance(data, QuerySet) and len(data):
+        if isinstance(data[0], dict):
+            return list(data)
+        if isinstance(data[0], models.Model):
+            return_list = []
+            for i in data:
+                return_list.append(model_to_dict(i))
+            return return_list
+    else:
+        return []
