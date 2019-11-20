@@ -4,28 +4,32 @@ from django.shortcuts import render
 
 from django.views.decorators.csrf import csrf_exempt
 from bookkeeping.models import BillType
-from django.forms.models import model_to_dict
 from duole_mini import utils
+from bookkeeping.validate import TypeAddValidate
 
 
+# 分类添加
 @csrf_exempt
-def add(request):
-    name = request.POST['name']
-    pid = request.POST['pid']
+def type_add(request):
+    valid = TypeAddValidate(request.POST)
+    if valid.is_valid():
+        name = request.POST['name']
+        pid = request.POST['pid']
 
-    bill_type = BillType()
-    bill_type.name = name
-    bill_type.pid = pid
-    bill_type.save()
+        bill_type = BillType()
+        bill_type.name = name
+        bill_type.pid = pid
+        bill_type.save()
 
-    data_dict = utils.change_to_list_dict(bill_type)
-    return utils.success(data_dict)
+        data_dict = utils.change_to_list_dict(bill_type)
+        return utils.success(data_dict)
+    else:
+        return utils.error(message=valid.errors)
 
 
-def get_list(self):
+# 分类列表
+def type_list(self):
     list_val = BillType.objects.all()
     return_list = utils.change_to_list_dict(list_val)
 
     return utils.success(return_list)
-
-
