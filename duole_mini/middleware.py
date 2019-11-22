@@ -1,4 +1,6 @@
-class SignatureVerificationMiddleware(object):
-    @staticmethod
-    def process_request(request):
+from django.utils.deprecation import MiddlewareMixin
+
+
+class SignatureVerificationMiddleware(MiddlewareMixin):
+    def process_request(self, request):
         return None
