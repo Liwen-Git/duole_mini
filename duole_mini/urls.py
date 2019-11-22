@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bookkeeping import views as bookkeeping_views
+from bookkeeping.views import BillTypeController
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('bookkeeping/bill_type/add', bookkeeping_views.type_add),
-    path('bookkeeping/bill_type/list', bookkeeping_views.type_list),
+    path('bookkeeping/bill_type/add', BillTypeController().type_add),
+    path('bookkeeping/bill_type/edit', BillTypeController().type_edit),
+    path('bookkeeping/bill_type/list', BillTypeController.type_list),
 ]
