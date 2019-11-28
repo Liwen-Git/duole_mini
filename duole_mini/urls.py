@@ -23,4 +23,5 @@ urlpatterns = [
     path('bookkeeping/bill_type/add', BillTypeController().type_add),
     path('bookkeeping/bill_type/edit', BillTypeController().type_edit),
     path('bookkeeping/bill_type/list', BillTypeController.type_list),
+    path('bookkeeping/bill_type/delete', BillTypeController().type_delete),
 ]

@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from bookkeeping.models import BillType
 from duole_mini import utils
-from bookkeeping.validate import TypeAddValidate, TypeEditValidate
+from bookkeeping.validate import TypeAddValidate, TypeEditValidate, TypeDeleteValidate
 
 
 class BillTypeController(object):
@@ -53,3 +53,20 @@ class BillTypeController(object):
         return_list = utils.change_to_list_dict(list_val)
 
         return utils.success(return_list)
+
+    # 删除
+    @csrf_exempt
+    def type_delete(self, request):
+        valid = TypeDeleteValidate(request.POST)
+        if valid.is_valid():
+            id = request.POST['id']
+            bill_type = BillType.objects.get(pk=id)
+            if bill_type.pid == 0:
+                count = BillType.objects.filter(pid=bill_type.id).count()
+                if count > 0:
+                    return utils.error(message='该分类存在子类')
+            else:
+                bill_type.delete()
+                return utils.success()
+        else:
+            return utils.error(message=valid.errors)
