@@ -15,7 +15,7 @@ class BillTypeController(object):
         req_dict = json.loads(request.body.decode('utf-8'))
         if not req_dict.get('name'):
             return utils.error('类型名称不能为空')
-        elif not req_dict.get('pid'):
+        elif not req_dict.get('pid') and req_dict.get('pid') != 0:
             return utils.error('上级不能为空')
         else:
             name = req_dict.get('name')
@@ -35,7 +35,7 @@ class BillTypeController(object):
         req_dict = json.loads(request.body.decode('utf-8'))
         if not req_dict.get('name'):
             return utils.error('类型名称不能为空')
-        elif not req_dict.get('pid'):
+        elif (not req_dict.get('pid')) and req_dict.get('pid') != 0:
             return utils.error('上级不能为空')
         elif not req_dict.get('id'):
             return utils.error('id不能为空')
