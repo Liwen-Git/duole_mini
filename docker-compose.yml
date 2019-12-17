@@ -1,0 +1,47 @@
+version: "1"
+services:
+  duole_redis:
+    image: redis:5.0
+    command: redis-server
+    volumes:
+      - ./deployment/redis/data:/data
+    ports:
+      - "6379:6379"
+    restart: always
+
+  duole_mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=duole_mini
+      - MYSQL_ROOT_PASSWORD=DxqWVXH2
+    volumes:
+      - ./deployment/mysql/data:/var/lib/mysql
+      - ./deployment/mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3305:3306"
+    restart: always
+
+  duole_py_api:
+    build: .
+    expose:
+      - "9090"
+    volumes:
+      - .:/duole_mini
+    command: bash start.sh
+    links:
+      - duole_mysql
+      - duole_redis
+    restart: always
+
+  duole_nginx:
+    build: deployment/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - "9090"
+    links:
+      - duole_py_api
+    depends_on:
+      - duole_py_api
+    restart: always
