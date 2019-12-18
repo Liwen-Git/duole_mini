@@ -10,7 +10,9 @@ WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
-RUN apk add python3-dev
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+    && apk update \
+    && apk add python3-dev
 
 RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ supervisor
 
