@@ -1,6 +1,6 @@
 version: "3"
 services:
-  duole_redis:
+  redis:
     image: redis:5.0
     command: redis-server
     volumes:
@@ -9,7 +9,7 @@ services:
       - "6379:6379"
     restart: always
 
-  duole_mysql:
+  mysql:
     image: mysql:5.7
     environment:
       - MYSQL_DATABASE=duole_mini
@@ -21,7 +21,7 @@ services:
       - "3305:3306"
     restart: always
 
-  duole_py_api:
+  py_api:
     build: .
     expose:
       - "9090"
@@ -33,11 +33,11 @@ services:
       - duole_redis
     restart: always
 
-  duole_nginx:
+  nginx:
     build: deployment/nginx
     ports:
       - "80:80"
-      - "443:443"
+      - "442:443"
     expose:
       - "9090"
     links:
