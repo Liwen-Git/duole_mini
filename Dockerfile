@@ -46,4 +46,5 @@ RUN sed -i '$d' /etc/supervisord.conf
 RUN echo '[include]' >> /etc/supervisord.conf
 RUN echo 'files = /etc/supervisor_conf_file/*.conf' >> /etc/supervisord.conf
 
-RUN /usr/bin/supervisord -c /etc/supervisord.conf
+EXPOSE 80
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
