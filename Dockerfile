@@ -12,7 +12,8 @@ ADD . /duole_mini
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
     && apk update \
-    && apk add python3-dev gcc musl-dev libffi-dev openssl-dev make default-libmysqlclient-dev
+    && apk add python3-dev gcc musl-dev libffi-dev openssl-dev make \
+    && apk add libmysqlclient-dev
 
 RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ supervisor
 
