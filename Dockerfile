@@ -14,7 +14,7 @@ ADD . /duole_mini
 
 RUN rm -rf /var/lib/yum/history/*.sqlite
 
-RUN yum install -y python-devel gcc musl-dev libffi-dev openssl-dev
+RUN yum install -y python-devel gcc
 
 RUN yum install -y mariadb-devel
 
