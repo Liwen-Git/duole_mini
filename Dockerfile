@@ -10,7 +10,7 @@ WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
-RUN yum install python-devel
+RUN apt-get install python3-dev
 
 RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ supervisor
 
