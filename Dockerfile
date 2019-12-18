@@ -12,7 +12,7 @@ WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
-RUN yum history sync
+RUN rm -rf /var/lib/yum/history/*.sqlite
 
 RUN yum install -y python-devel gcc musl-dev libffi-dev openssl-dev
 
@@ -38,7 +38,7 @@ RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 RUN echo_supervisord_conf > /etc/supervisord.conf
 
 RUN mkdir /etc/supervisor_conf_file/
-RUN COPY ./deployment/supervisor/uwsgi.conf /etc/supervisor_conf_file/
+COPY ./deployment/supervisor/uwsgi.conf /etc/supervisor_conf_file/
 
 RUN sed -i '$d' /etc/supervisord.conf
 RUN sed -i '$d' /etc/supervisord.conf
