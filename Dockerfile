@@ -1,4 +1,4 @@
-FROM python:3.7.3
+FROM python:3.7-alpine
 # 作者
 MAINTAINER liwen liwen1010322212@163.com
 # Python环境变量
