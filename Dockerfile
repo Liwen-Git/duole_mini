@@ -4,13 +4,13 @@ MAINTAINER liwen liwen1010322212@163.com
 # Python环境变量
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /duole_mini
+USER root
+
+RUN sudo mkdir /duole_mini
 # 工作目录
 WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
-
-USER root
 
 RUN sudo yum install python-devel gcc musl-dev libffi-dev openssl-dev
 
