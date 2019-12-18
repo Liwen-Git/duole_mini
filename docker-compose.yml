@@ -29,8 +29,8 @@ services:
       - .:/duole_mini
     command: bash start.sh
     links:
-      - duole_mysql
-      - duole_redis
+      - mysql
+      - redis
     restart: always
 
   nginx:
@@ -41,7 +41,7 @@ services:
     expose:
       - "9090"
     links:
-      - duole_py_api
+      - py_api
     depends_on:
-      - duole_py_api
+      - py_api
     restart: always
