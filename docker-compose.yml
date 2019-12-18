@@ -6,7 +6,7 @@ services:
     volumes:
       - ./deployment/redis/data:/data
     ports:
-      - "6379:6379"
+      - "6378:6379"
     restart: always
 
   mysql:
@@ -36,7 +36,7 @@ services:
   nginx:
     build: deployment/nginx
     ports:
-      - "80:80"
+      - "79:80"
       - "442:443"
     expose:
       - "9090"
