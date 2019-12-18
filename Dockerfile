@@ -14,7 +14,7 @@ ADD . /duole_mini
 
 RUN yum install -y python-devel gcc musl-dev libffi-dev openssl-dev
 
-RUN yum install -y libmysqlclient-dev
+RUN yum install -y mariadb-devel
 
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
 #    && apk update \
