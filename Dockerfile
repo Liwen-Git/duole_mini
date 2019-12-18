@@ -6,15 +6,15 @@ ENV PYTHONUNBUFFERED 1
 
 USER root
 
-RUN sudo mkdir /duole_mini
+RUN mkdir /duole_mini
 # 工作目录
 WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
-RUN sudo yum install python-devel gcc musl-dev libffi-dev openssl-dev
+RUN yum install python-devel gcc musl-dev libffi-dev openssl-dev
 
-RUN sudo yum install libmysqlclient-dev
+RUN yum install libmysqlclient-dev
 
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
 #    && apk update \
