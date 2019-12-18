@@ -12,6 +12,8 @@ WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
+RUN yum history sync
+
 RUN yum install -y python-devel gcc musl-dev libffi-dev openssl-dev
 
 RUN yum install -y mariadb-devel
@@ -21,12 +23,14 @@ RUN yum install -y mariadb-devel
 #    && apk add python3-dev gcc musl-dev libffi-dev openssl-dev make \
 #    && apk add --no-cache mariadb-dev
 
-RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple/ supervisor
+RUN pip install --upgrade pip
 
-RUN pip3 install -i https://pypi.doubanio.com/simple/ uwsgi
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ supervisor
+
+RUN pip install -i https://pypi.doubanio.com/simple/ uwsgi
 
 # pip3安装依赖
-RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 设置环境变量
 
