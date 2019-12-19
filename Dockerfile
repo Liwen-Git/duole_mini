@@ -12,6 +12,9 @@ WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
+RUN mkdir /duole_mini/log
+RUN chmod -R 777 /duole_mini/log
+
 RUN rm -rf /var/lib/yum/history/*.sqlite
 
 RUN yum install -y python-devel gcc
