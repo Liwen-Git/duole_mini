@@ -12,8 +12,8 @@ WORKDIR /duole_mini
 # 工作目录挂载
 ADD . /duole_mini
 
-RUN mkdir /duole_mini/log
-RUN chmod -R 777 /duole_mini/log/
+RUN yum install yum-utils
+RUN package-cleanup --cleandupes
 
 RUN rm -rf /var/lib/yum/history/*.sqlite
 
