@@ -13,7 +13,7 @@ WORKDIR /duole_mini
 ADD . /duole_mini
 
 RUN mkdir /duole_mini/log
-RUN chmod -R 777 /duole_mini/log
+RUN chmod -R 777 /duole_mini/log/
 
 RUN rm -rf /var/lib/yum/history/*.sqlite
 
