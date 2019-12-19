@@ -32,8 +32,6 @@ services:
       - mysql
       - redis
     restart: always
-    stdin_open: true
-    tty: true
 
   nginx:
     build: deployment/nginx
@@ -47,3 +45,5 @@ services:
     depends_on:
       - py_api
     restart: always
+    stdin_open: true
+    tty: true
