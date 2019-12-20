@@ -32,6 +32,8 @@ services:
       - mysql
       - redis
     restart: always
+    stdin_open: true
+    tty: true
 
   nginx:
     build: deployment/nginx
