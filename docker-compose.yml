@@ -23,8 +23,8 @@ services:
 
   py_api:
     build: .
-    expose:
-      - "9090"
+    ports:
+      - "9090:9090"
     volumes:
       - .:/duole_mini
     command: bash start.sh
@@ -40,8 +40,6 @@ services:
     ports:
       - "8000:80"
       - "442:443"
-    expose:
-      - "9090"
     links:
       - py_api
     depends_on:

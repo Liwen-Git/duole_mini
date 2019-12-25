@@ -49,5 +49,4 @@ RUN sed -i '$d' /etc/supervisord.conf
 RUN echo '[include]' >> /etc/supervisord.conf
 RUN echo 'files = /etc/supervisor_conf_file/*.conf' >> /etc/supervisord.conf
 
-EXPOSE 9090
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
